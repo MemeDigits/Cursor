@@ -1,55 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Static Black Background</title>
+	<title>Memedigits.eth - Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
 	<style>
 		body {
 			background-color: black;
-			cursor: none;
+			cursor: url('pixel.cur'), auto;
 		}
-		.cursor {
+		.center {
 			position: absolute;
-			display: block;
-			width: 10px;
-			height: 10px;
-			border-radius: 50%;
-			background-color: white;
-			opacity: 0;
-			animation: cursor-burst 1s ease-out;
-		}
-		@keyframes cursor-burst {
-			0% {
-				transform: scale(0);
-				opacity: 1;
-			}
-			100% {
-				transform: scale(20);
-				opacity: 0;
-			}
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: white;
+			font-size: 48px;
+			font-weight: bold;
 		}
 	</style>
 </head>
 <body>
-	<div class="cursor"></div>
+	<div class="center">MemeDigits.eth</div>
 	<script>
-		document.addEventListener('click', function(e) {
-			var cursor = document.querySelector('.cursor');
-			cursor.style.top = e.pageY + 'px';
-			cursor.style.left = e.pageX + 'px';
-			cursor.style.backgroundColor = getRandomColor();
-			cursor.classList.remove('cursor');
-			void cursor.offsetWidth;
-			cursor.classList.add('cursor');
+		window.addEventListener("mousedown", function() {
+			document.body.classList.add("burst");
+			setTimeout(function() {
+				document.body.classList.remove("burst");
+			}, 500);
 		});
-
-		function getRandomColor() {
-			var letters = '0123456789ABCDEF';
-			var color = '#';
-			for (var i = 0; i < 6; i++) {
-				color += letters[Math.floor(Math.random() * 16)];
-			}
-			return color;
-		}
 	</script>
 </body>
 </html>
